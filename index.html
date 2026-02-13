@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scam Message Detector</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(120deg,#74ebd5,#ACB6E5);
+    text-align:center;
+    padding-top:50px;
+}
+
+.container{
+    background:white;
+    width:420px;
+    margin:auto;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 15px gray;
+}
+
+textarea{
+    width:95%;
+    height:100px;
+    padding:10px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid gray;
+}
+
+button{
+    padding:10px 25px;
+    background:#007BFF;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+#result{
+    margin-top:15px;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h2>Scam Message Detection System</h2>
+
+<textarea id="message"
+placeholder="Enter message here..."></textarea>
+
+<br>
+<button onclick="checkScam()">Check Message</button>
+
+<p id="result"></p>
+</div>
+
+<script>
+function checkScam(){
+    let msg=document.getElementById("message")
+            .value.toLowerCase();
+
+    let scamWords=[
+        "win","lottery","free","prize",
+        "urgent","click","bank",
+        "otp","offer","money"
+    ];
+
+    let scam=scamWords.some(word=>msg.includes(word));
+    let result=document.getElementById("result");
+
+    if(scam){
+        result.innerHTML="⚠ Scam Message Detected!";
+        result.style.color="red";
+    }
+    else{
+        result.innerHTML="✔ Message Looks Safe";
+        result.style.color="green";
+    }
+}
+</script>
+
+</body>
+</html>
